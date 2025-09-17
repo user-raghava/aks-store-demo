@@ -23,7 +23,7 @@ jobs:
               working-directory: src/store-front
 
             - name: Zip build output
-              run: zip -r dist.zip src/store-front/dist/
+              run: zip -r ${{ github.event.repository.name }}-${{ github.run_number }}.zip src/store-front/dist/
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
