@@ -28,5 +28,5 @@ jobs:
             - name: Upload artifact
               uses: actions/upload-artifact@v4
               with:
-                name: build-artifact
-                path: dist.zip
+                name: ${{ github.event.repository.name }}-${{ github.run_number }}
+                path: ${{ github.event.repository.name }}-${{ github.run_number }}.zip
