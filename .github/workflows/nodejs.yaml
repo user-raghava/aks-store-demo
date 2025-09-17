@@ -1,0 +1,32 @@
+---
+name: react js CI
+on:
+    pull_request:
+      branches: 
+        - main
+    workflow_dispatch:
+
+jobs:
+    store-front:
+        runs-on: ubuntu-24.04
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: install dependencies
+              run: npm install
+              working-directory: src/store-front
+
+            - name: build the package
+              run: npm run build
+              working-directory: src/store-front
+
+            - name: Zip build output
+              run: zip -r .zip src/store-front/dist/
+
+            - name: Upload artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: build-artifact
+                path: dist.zip
